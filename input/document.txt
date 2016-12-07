@@ -1,0 +1,26 @@
+Welcome to DKPro
+DKPro is a community of projects focussing on re-usable Natural Language Processing software. 
+
+DKPro Core
+Ready to use software components for natural language processing, based on the Apache UIMA framework.
+More ›
+
+DKPro Similarity
+Framework for developing text similarity algorithms.
+More ›
+
+DKPro Statistics
+Collection of open-licensed statistical tools, currently including correlation and inter-rater agreement methods.
+More ›
+
+DKPro TC
+UIMA-based text classification framework built on top of DKPro Core, DKPro Lab and the Weka Machine Learning Toolkit. It is intended to alleviate supervised machine learning experiments with any kind of textual data.
+More ›
+
+DKPro WSD
+Modular, extensible Java framework for word sense disambiguation.
+More ›
+
+Uby
+Framework for creating and accessing sense-linked lexical resources in accordance with the UBY-LMF lexicon model, an instantiation of the ISO standard Lexicon Markup Framework (LMF).
+More ›
