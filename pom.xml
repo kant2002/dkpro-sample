@@ -65,6 +65,5 @@
 	    <artifactId>dkpro-similarity-algorithms-lexical-asl</artifactId>
 	    <version>2.2.0</version>
 	</dependency>
-
   </dependencies>
 </project>

@@ -12,6 +12,7 @@ import de.tudarmstadt.ukp.dkpro.core.io.conll.Conll2006Writer;
 import de.tudarmstadt.ukp.dkpro.core.io.text.TextReader;
 import de.tudarmstadt.ukp.dkpro.core.languagetool.LanguageToolLemmatizer;
 import de.tudarmstadt.ukp.dkpro.core.maltparser.MaltParser;
+import de.tudarmstadt.ukp.dkpro.core.opennlp.OpenNlpNamedEntityRecognizer;
 import de.tudarmstadt.ukp.dkpro.core.opennlp.OpenNlpPosTagger;
 import de.tudarmstadt.ukp.dkpro.core.opennlp.OpenNlpSegmenter;
 import de.tudarmstadt.ukp.dkpro.core.io.xmi.XmiWriter;
@@ -24,7 +25,8 @@ public class helloworld {
    // private static final Logger logger = LogManager.getLogger("HelloWorld");
   public static void main(String[] args) throws Exception {
 	  // lexicalAnalysis();
-	  textSimilarity();
+	  // textSimilarity();
+	  entityAnalysis();
   }
 
   public static void textSimilarity() throws Exception {
@@ -58,6 +60,24 @@ public class helloworld {
         createEngineDescription(Conll2006Writer.class,
             Conll2006Writer.PARAM_TARGET_LOCATION, "output",
     		XmiWriter.PARAM_OVERWRITE, true),
+        createEngineDescription(XmiWriter.class,
+        		XmiWriter.PARAM_TARGET_LOCATION, "output",
+        		XmiWriter.PARAM_OVERWRITE, true,
+        		XmiWriter.PARAM_TYPE_SYSTEM_FILE, "output\\typesystem.xml"));
+  }
+
+  public static void entityAnalysis() throws Exception {
+	runPipeline(
+        createReaderDescription(TextReader.class,
+            TextReader.PARAM_SOURCE_LOCATION, "input/*.txt",
+            TextReader.PARAM_LANGUAGE, "en"),
+
+        // OpenNlpSegmenter step is important, since it provide token for the
+        // OpenNlpNamedEntityRecognizer
+        createEngineDescription(OpenNlpSegmenter.class),
+        createEngineDescription(OpenNlpNamedEntityRecognizer.class,
+        		OpenNlpNamedEntityRecognizer.PARAM_LANGUAGE, "en",
+        		OpenNlpNamedEntityRecognizer.PARAM_VARIANT, "organization"),
         createEngineDescription(XmiWriter.class,
         		XmiWriter.PARAM_TARGET_LOCATION, "output",
         		XmiWriter.PARAM_OVERWRITE, true,
